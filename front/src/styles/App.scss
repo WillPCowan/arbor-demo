@@ -1,0 +1,245 @@
+@use "_colors" as clr;
+@use "_dimensions" as dim;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: clr.$bkgr-color;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+
+a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: auto;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+html,
+body,
+#root,
+.App {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  border: none;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+input[type="search"]:active {
+  border: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+button {
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: #fcfaf8; */
+  /* background-color: #f5eeea; */
+  background-color: #f5f0ed;
+}
+
+/* Buttons -------------------------------- */
+.btn-white {
+  color: black;
+  background-color: white;
+  padding: 6px 10px 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0;
+  border: none;
+  white-space: nowrap;
+
+  // Colour when hovering
+  &:hover {
+    background-color: #eee;
+  }
+
+  // Colour when clicking
+  &:active {
+    background-color: #ddd;
+  }
+}
+
+.btn-grey {
+  color: white;
+  background-color: rgb(80, 80, 80);
+  padding: 6px 10px 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0;
+  border: none;
+  white-space: nowrap;
+
+  // Colour when hovering
+  &:hover {
+    background-color: rgb(27, 27, 27);
+  }
+
+  // Colour when clicking
+  &:active {
+    background-color: rgb(17, 17, 17);
+  }
+}
+
+// SearchPanel ================================================================
+.cloak {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vw;
+  background-color: rgba(0, 0, 0, 0.089);
+}
+
+$searchpanel-w: 600px;
+$searchpanel-h-max: 700px;
+
+.searchpanel {
+  position: fixed;
+  top: 10vh;
+  left: calc(50vw - (#{$searchpanel-w}/ 2));
+
+  z-index: 2;
+  width: $searchpanel-w;
+  max-height: $searchpanel-h-max;
+  background-color: clr.$searchpanel-bkgr-color;
+  border-bottom: 6px solid #89aae7;
+  border-top: 6px solid #89aae7;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  -webkit-box-shadow: 0px 0px 4px 1px #3e3e3e21;
+  box-shadow: 0px 0px 4px 1px #3e3e3e21;
+  border-radius: 4px;
+
+  &__input {
+    width: 100%;
+    height: 4rem;
+    border-bottom: solid 1px clr.$grey-line-color;
+    background-color: clr.$searchpanel-input-bkgr-color;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    // margin-bottom: 40px;
+
+    & input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      font-size: 18px;
+    }
+  }
+
+  &__search-icon {
+    color: clr.$default-icon-color;
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  // Search suggestion box ----------------------------------------------------
+  $suggestion-spinner-h: 40px;
+  $suggestion-list-marg: 10px;
+  $empty-list-item-marg: 40px; // Margin for loader and "no suggs" msg when no options
+
+  // Container for suggestions
+  &__suggestions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & .spinner {
+      margin-top: $empty-list-item-marg;
+      margin-bottom: $empty-list-item-marg;
+      & .double-bounce1,
+      .double-bounce2 {
+        background-color: rgb(119, 154, 207);
+      }
+    }
+  }
+
+  // Individual suggestion boxes in __suggestions
+  &__suggestion-list {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-top: $suggestion-list-marg;
+    margin-bottom: $suggestion-list-marg;
+
+    &-item {
+      width: 100%;
+      height: auto;
+      background-color: white;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      -webkit-box-shadow: 0px 0px 2px 2px #3e3e3e12;
+      box-shadow: 0px 0px 2px 2px #3e3e3e12;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      &-text {
+        margin: 10px;
+        padding: 0;
+      }
+    }
+
+    &--none {
+      height: $suggestion-spinner-h;
+      color: #79797a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: $empty-list-item-marg;
+      margin-bottom: $empty-list-item-marg;
+    }
+  }
+}

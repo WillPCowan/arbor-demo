@@ -1,0 +1,41 @@
+type Query {
+  viewer: User
+  user(id: ID): User
+  concept(name: String): Concept
+  elaboration(selection: String): String
+  conceptSuggestions(text: String): [String]
+}
+
+type User implements Node {
+  """The ID of an object"""
+  id: ID!
+
+  """Real name of the user"""
+  name: String
+
+  """Dispaly name for the user"""
+  username: String
+
+  """Email of the user"""
+  email: String
+
+  """Hashed password of the user"""
+  password: String
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Concept implements Node {
+  """The ID of an object"""
+  id: ID!
+
+  """Title of the concept"""
+  name: String
+
+  """Content relating to description of the concept"""
+  body: String
+}

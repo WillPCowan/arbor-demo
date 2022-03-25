@@ -1,0 +1,190 @@
+@use "_dimensions.scss" as dims;
+@use "_colors.scss" as clr;
+
+.concept-area {
+  & h3 {
+    font-family: "Times New Roman", serif;
+    width: 100%;
+    text-align: left;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+}
+
+.concept-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.concept-name {
+  font-family: "Times New Roman", serif;
+  font-size: 44px;
+  font-weight: 400;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.concept-origin {
+  color: rgb(107, 107, 107);
+}
+
+.concept-content {
+  text-align: left;
+}
+
+// Generic sliding menu classes -----------------------------------------------
+$content-width-closed: 80vw;
+$content-width-open: 50vw;
+$content-margin-closed: calc(50vw - (#{$content-width-closed}/ 2));
+$content-margin-open: calc(50vw - (#{$content-width-open}/ 2));
+
+.sm-container {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.sm-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  // padding: 80px dims.$header-margin 0 dims.$header-margin;
+  padding-top: 80px;
+  transition: margin 0.2s;
+}
+// .sm-menu {
+//   transition: flex 1s;
+// }
+
+.sidemenu {
+  transition: background-color 0.4s;
+  height: calc(100vh - #{dims.$header-height});
+  display: flex;
+  flex-direction: column;
+
+  &__toggle {
+    border: solid 1px clr.$searchbutton-border-color;
+    border-radius: 4px;
+    position: relative;
+    top: calc(
+      (100vh / 2) + 13px - 2 *#{dims.$header-height}
+    ); // Put at verticle center of entire viewport, not just CoceptArea
+  }
+}
+.sidemenu__toggle {
+  // transition: left 0.2s;
+  left: -13px;
+}
+
+.closed-menu {
+  // 1. Content push menu out of view, except for menu toggle
+  &.sm-content {
+    width: $content-width-closed;
+    margin-left: $content-margin-closed;
+    margin-right: $content-margin-closed;
+  }
+
+  // 1. Menu has no size and is not seen
+  &.sm-menu {
+    flex: 0;
+  }
+
+  & > .sidemenu__toggle {
+    left: -13px;
+  }
+}
+
+// How to change components when menu opens
+.open-menu {
+  // 1. Remove left margin so content sits against left edge
+  // 2. Remove right margin that matches left padding of container
+  &.sm-content {
+    width: $content-width-open;
+    margin-left: dims.$header-margin;
+    margin-right: dims.$header-margin;
+    // flex: auto;
+  }
+
+  // 1. Grow
+  &.sm-menu {
+    flex: 1;
+  }
+
+  .sidemenu {
+    background-color: clr.$bkgr-color;
+  }
+  // & > .sidemenu__toggle {
+  //   left: 0;
+  // }
+}
+
+.sidemenu {
+  background-color: #dfe5f1;
+  border-left: solid 2px clr.$searchbutton-bkgr-color;
+
+  &__toggle {
+    background-color: clr.$bkgr-color;
+  }
+}
+
+// BEFORE EDIT ================================================================
+// .concept-page {
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: flex-start;
+//   transition: transform 0.5s ease;
+
+//   padding: 0 20vw 0 20vw;
+
+//   &.open-menu {
+//     justify-content: flex-start;
+//   }
+// }
+
+// .concept-area {
+//   // width: 60%;
+
+//   flex: 1;
+
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 80px dims.$header-margin 0 dims.$header-margin;
+// }
+
+// .concept-header {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   margin-bottom: 40px;
+// }
+
+// .concept-name {
+//   font-family: "Times New Roman", serif;
+//   font-size: 44px;
+//   font-weight: 400;
+//   width: 100%;
+//   text-align: left;
+//   margin-bottom: 6px;
+// }
+
+// .concept-origin {
+//   color: rgb(107, 107, 107);
+// }
+
+// .concept-content {
+//   text-align: left;
+// }

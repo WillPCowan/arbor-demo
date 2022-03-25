@@ -1,0 +1,53 @@
+{
+  "name": "arbor-front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.17",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "babel-plugin-relay": "^12.0.0",
+    "buffer": "^6.0.3",
+    "history": "^4.10.1",
+    "react": "^18.0.0-rc.0",
+    "react-dom": "^17.0.2",
+    "react-html-parser": "^2.0.2",
+    "react-relay": "^12.0.0",
+    "react-router": "^5.2.1",
+    "react-router-config": "^5.1.1",
+    "react-scripts": "^5.0.0",
+    "relay-compiler": "^12.0.0",
+    "sass": "^1.49.0",
+    "typescript": "^4.5.5",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "relay:compile": "relay-compiler --src ./src --schema ./src/schema.graphql"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
