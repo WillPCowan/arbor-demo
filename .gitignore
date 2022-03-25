@@ -1,0 +1,8 @@
+front/node_modules*
+front/build
+front/package-lock.json
+back/node_modules*
+back/package-lock.json
+back/types
+database/node_modules
+database/data_sharing/mongodb_streams/resumeTokens/*
